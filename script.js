@@ -51,14 +51,18 @@ function updateTable(text) {
 			const dot = substr.lastIndexOf('.');
 			const comma = substr.lastIndexOf(',');
 			const arrEnd = [space, dot, comma];
-			arrEnd.sort();
+			const reducer = (accumulator, currentValue) =>
+				accumulator < currentValue ? currentValue : accumulator;
+			const lastPosition = arrEnd.reduce(reducer);
+			console.table(arrEnd);
+			// arrEnd.sort();
 			if (cell < 20) {
 				console.warn(cell);
 				console.table(arrEnd);
 			}
 			// const END = arrEnd[1] > arrEnd[2] ? arrEnd[2] : arrEnd[1];
 			// const maxPosition = END;
-			const maxPosition = arrEnd[2];
+			const maxPosition = lastPosition;
 
 			// Modify string
 			// Create
